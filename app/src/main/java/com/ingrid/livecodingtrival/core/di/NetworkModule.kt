@@ -1,6 +1,7 @@
 package com.ingrid.livecodingtrival.core.di
 
 import com.ingrid.livecodingtrival.core.di.NetworkManager.instanceRetrofit
+import com.ingrid.livecodingtrival.data.remote.api.CategorieDetailApi
 import com.ingrid.livecodingtrival.data.remote.api.JokesApi
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun categoriesApi() : JokesApi = instanceRetrofit.create(JokesApi::class.java)
+
+    @Provides
+    @Singleton
+    fun getDetailCategorie() : CategorieDetailApi = instanceRetrofit.create(CategorieDetailApi::class.java)
 }

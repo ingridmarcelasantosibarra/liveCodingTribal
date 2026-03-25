@@ -1,6 +1,8 @@
 package com.ingrid.livecodingtrival.core.di
 
+import com.ingrid.livecodingtrival.data.repositoryImpl.CategorieDetailRepositoryImpl
 import com.ingrid.livecodingtrival.data.repositoryImpl.CategoriesRepositoryImpl
+import com.ingrid.livecodingtrival.domain.repository.CategorieDetailRepository
 import com.ingrid.livecodingtrival.domain.repository.CategoriesRepository
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun categoriesRepository(categoriesRepositoryImpl: CategoriesRepositoryImpl) : CategoriesRepository
+
+    @Binds
+    @Singleton
+    abstract fun getDetailCategorieRepository(categorieDetailRepositoryImpl: CategorieDetailRepositoryImpl) : CategorieDetailRepository
 }

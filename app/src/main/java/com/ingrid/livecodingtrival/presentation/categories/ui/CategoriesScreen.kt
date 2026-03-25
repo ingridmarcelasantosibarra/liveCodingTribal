@@ -1,6 +1,5 @@
 package com.ingrid.livecodingtrival.presentation.categories.ui
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ingrid.livecodingtrival.presentation.categories.viewmodel.CategoriesViewModel
 
 @Composable
-fun CategoriesScreen(viewModel : CategoriesViewModel = hiltViewModel(), modifier: Modifier)  {
+fun CategoriesScreen(modifier: Modifier, navToNextScreen: (String)-> Unit, viewModel : CategoriesViewModel = hiltViewModel())  {
     val state  by viewModel.categories.collectAsStateWithLifecycle()
 
     Column(modifier = modifier.fillMaxSize().padding(12.dp)) {
@@ -44,9 +43,13 @@ fun CategoriesScreen(viewModel : CategoriesViewModel = hiltViewModel(), modifier
         }
 
         state.categories.let { cat ->
-            LazyColumn(modifier = Modifier.padding(8.dp)) {
+            LazyColumn(modifier = Modifier.padding(16.dp)) {
                 items(cat.size) { index ->
-                    Text(text = cat[index])
+                    Card(onClick = {
+                        navToNextScreen(cat[index])
+                    }) {
+                        Text(text = cat[index])
+                    }
                 }
             }
         }
